@@ -4,7 +4,7 @@ export async function GET() {
   let response, body;
 
   try {
-  response = await fetch("https://www.cadeca.cu/");
+  response = await fetch("https://www.directoriocubano.info/cadeca/");
   body = await response.text();
   } catch(e){
     return new Response(e, { status: 200, headers: { "Content-Type": "application/json" } });
@@ -14,23 +14,23 @@ export async function GET() {
 
   let api_response = {
     target_currency: "CUP",
-    data_source: "https://www.cadeca.cu/",
+    data_source: "https://www.directoriocubano.info/cadeca/",
     date_time: new Date().toISOString(),
     exchange_rate: []
   }
 
-  $("#quicktabs-tabpage-m_dulo_tasa_de_cambio-0 tbody tr").map((i, el) => {
+  $(".cadeca-exchange-rate tbody tr").map((i, el) => {
     let rate = { };
     $(el)
       .find("td")
       .each((index, element) => {
-        if (index == 1) {
+        if (index == 0) {
           rate.source_currency = $(element).text().replace(/\s/g, "");
         }
-        if (index == 2) {
+        if (index == 1) {
           rate.buy = parseFloat($(element).text());
         }
-        if (index == 3) {
+        if (index == 2) {
           rate.sell = parseFloat($(element).text());
         }
       });
