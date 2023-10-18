@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.3.1"
+    "astro": "^3.3.1",
+    "cheerio": "1.0.0-rc.12"
   }
 }
