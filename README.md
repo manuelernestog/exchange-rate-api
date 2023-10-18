@@ -17,7 +17,7 @@ pnpm run dev
 
 ## 📊 Data Sources
 
-- https://www.cadeca.cu/
+- https://www.directoriocubano.info/cadeca/
 - https://divisascu.app/
 
 
