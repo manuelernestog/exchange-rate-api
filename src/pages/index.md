@@ -1,6 +1,6 @@
 # 💱 Free and Open Source Cuban Exchange Rate API
 
-This API just facilitates the consumption of exchange rate information, the values shown here come from third-party sources. Data is updated every 24 hours. We are not responsible for the stability of this API, please use it for your project at your own risk or host your own instance.
+This API just facilitates the consumption of exchange rate information, the values shown here come from third-party sources. Data is updated every 12 hours. We are not responsible for the stability of this API, please use it for your project at your own risk or host your own instance.
 
 ## 📊 Data Sources
 
