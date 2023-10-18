@@ -5,7 +5,9 @@ export async function GET() {
     response = await fetch("https://api.divisascu.app/api/v2/currencies/active-exchange-rates/");
     exchanges = await response.json();
   } catch (e) {
-    return new Response(e, { status: 200, headers: { "Content-Type": "application/json" } });
+    response = await fetch("https://exchange-rate.decubba.com/api/informal/cup");
+    body = await response.text();
+    return new Response(body, { status: 200, headers: { "Content-Type": "application/json" } });
   }
 
   let api_response = {

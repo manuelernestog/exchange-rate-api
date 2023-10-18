@@ -4,10 +4,12 @@ export async function GET() {
   let response, body;
 
   try {
-  response = await fetch("https://www.directoriocubano.info/cadeca/");
-  body = await response.text();
-  } catch(e){
-    return new Response(e, { status: 200, headers: { "Content-Type": "application/json" } });
+    response = await fetch("https://www.directoriocubano.info/cadeca/");
+    body = await response.text();
+  } catch (e) {
+    response = await fetch("https://exchange-rate.decubba.com/api/formal/cup");
+    body = await response.text();
+    return new Response(body, { status: 200, headers: { "Content-Type": "application/json" } });
   }
 
   const $ = cheerio.load(body);
@@ -16,11 +18,11 @@ export async function GET() {
     target_currency: "CUP",
     data_source: "https://www.directoriocubano.info/cadeca/",
     date_time: new Date().toISOString(),
-    exchange_rate: []
-  }
+    exchange_rate: [],
+  };
 
   $(".cadeca-exchange-rate tbody tr").map((i, el) => {
-    let rate = { };
+    let rate = {};
     $(el)
       .find("td")
       .each((index, element) => {
@@ -34,7 +36,7 @@ export async function GET() {
           rate.sell = parseFloat($(element).text());
         }
       });
-      api_response.exchange_rate.push(rate);
+    api_response.exchange_rate.push(rate);
   });
 
   return new Response(JSON.stringify(api_response), {
