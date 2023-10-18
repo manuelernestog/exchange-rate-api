@@ -16,7 +16,6 @@ export async function GET() {
 
   let api_response = {
     target_currency: "CUP",
-    data_source: "https://www.directoriocubano.info/cadeca/",
     date_time: new Date().toISOString(),
     exchange_rate: [],
   };

@@ -12,7 +12,6 @@ export async function GET() {
 
   let api_response = {
     target_currency: "CUP",
-    data_source: "https://www.divisascu.app/",
     date_time: new Date().toISOString(),
     exchange_rate: [],
   };

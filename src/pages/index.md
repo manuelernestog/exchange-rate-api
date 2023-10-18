@@ -4,7 +4,7 @@ This API just facilitates the consumption of exchange rate information, the valu
 
 ## 📊 Data Sources
 
-- https://www.directoriocubano.info/cadeca/ (the same as cadeca.cu)
+- https://www.directoriocubano.info/cadeca/ (Same as https://www.cadeca.cu)
 - https://divisascu.app/
 
 
@@ -12,8 +12,8 @@ This API just facilitates the consumption of exchange rate information, the valu
 
 |Method | URL                      | Response                                         |
 |:-------| :------------------------ | :----------------------------------------------- |
-|GET| [/api/formal/cup](/api/formal/cup)         | Returns formal CUP exchange rate of the day      |
-|GET  | [/api/informal/cup](/api/informal/cup)       | Returns informal CUP exchange rate of the day    |
+|GET| [/api/formal/cup](/api/formal/cup)         | Formal CUP exchange rate of the day      |
+|GET  | [/api/informal/cup](/api/informal/cup)       | Informal CUP exchange rate of the day    |
 
 ## 👨‍💻 Source Code 
 
