@@ -23,7 +23,7 @@ pnpm run dev
 
 ## 🧞 API Endpoints
 
-|Method | URL                      | Response                                         |
+|Method | Slug                      | Response                                         |
 |:-------| :------------------------ | :----------------------------------------------- |
 |GET| [/api/formal/cup](/api/formal/cup)         | Formal CUP exchange rate of the day      |
 |GET  | [/api/informal/cup](/api/informal/cup)       | Informal CUP exchange rate of the day    |
