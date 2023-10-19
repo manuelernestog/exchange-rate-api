@@ -17,4 +17,4 @@ This API just facilitates the consumption of exchange rate information, the valu
 
 ## 👨‍💻 Source Code 
 
-https://github.com/decubba/exchange-rate
+https://github.com/decubba/exchange-rate-api
