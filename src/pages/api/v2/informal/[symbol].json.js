@@ -2,6 +2,7 @@ const TARGET_SYMBOLS = ["USD", "MLC", "CUP", "EUR"];
 const informal_exchange_rate_data = await getInformalExchangeRateData();
 
 export async function GET({ params, request }) {
+  const inverted = false;
   const base_symbol = params.symbol.toUpperCase();
 
   if (!informal_exchange_rate_data) {
@@ -11,10 +12,11 @@ export async function GET({ params, request }) {
   }
 
   const rates_to_cup = getRatesToCUP(informal_exchange_rate_data);
-  const rates = calculateRates(rates_to_cup, base_symbol);
+  const rates = calculateRates(rates_to_cup, base_symbol, inverted);
 
   let api_response = {
-    base: base_symbol.toUpperCase(),
+    currency: base_symbol.toUpperCase(),
+    format: inverted ? "target" : "source", 
     date_time: new Date().toISOString(),
     rates: rates,
   };
@@ -51,7 +53,7 @@ function getRatesToCUP(data) {
   return rates;
 }
 
-function calculateRates(rates_to_cup, base_symbol) {
+function calculateRates(rates_to_cup, base_symbol, inverted = false) {
   let rates = {};
   TARGET_SYMBOLS.forEach((current_symbol) => {
     if (base_symbol == current_symbol) {
@@ -74,6 +76,12 @@ function calculateRates(rates_to_cup, base_symbol) {
         sell: rates_to_cup[base_symbol].sell / rates_to_cup[current_symbol].sell,
         mid: rates_to_cup[base_symbol].mid / rates_to_cup[current_symbol].mid,
       };
+    }
+
+    if (inverted) {
+      rates[current_symbol].buy = 1 / rates[current_symbol].buy;
+      rates[current_symbol].sell = 1 / rates[current_symbol].sell;
+      rates[current_symbol].mid = 1 / rates[current_symbol].mid;
     }
   });
   return rates;

@@ -15,17 +15,24 @@ This API just facilitates the consumption of exchange rate information, the valu
 
 ### ➡️ v2
 
-#### /v2/informal/[symbol].json
+#### /v2/informal/base/[symbol].json
 - **Método:** GET
 - **Description:** Returns the daily exchange rate for the selected currency
 - **URL-Params:** [symbol] = *usd || mlc || eur || cup*
-- **Response Format**:
-  ```
-
-  ```
-- ***Request Example**: GET https://exchange-rate.decubba.com/api/v2/informal/usd.json
-
-----
+- **Request Example**: GET https://exchange-rate.decubba.com/api/v2/informal/usd.json
+- **Response Example**: 
+```
+{
+    "base":"USD",
+    "date_time":"2023-10-21T18:19:14.079Z",
+    "rates":{
+        "USD":{"buy":1,"sell":1,"mid":1},
+        "MLC":{"buy":1.1228762380223851,"sell":1.1076650420912717,"mid":1.1061946902654871},
+        "CUP":{"buy":253.54545454545453,"sell":250,"mid":250},
+        "EUR":{"buy":0.973676860773635,"sell":0.9701202949165697,"mid":0.9646779459780354}
+        }
+    }
+```
 
 ### ➡️ v1 (Deprecated)
 
