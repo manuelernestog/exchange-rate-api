@@ -2,7 +2,7 @@ const TARGET_SYMBOLS = ["USD", "MLC", "CUP", "EUR"];
 const informal_exchange_rate_data = await getInformalExchangeRateData();
 
 export async function GET({ params, request }) {
-  const inverted = false;
+  const is_target = params.direction == "target";
   const base_symbol = params.symbol.toUpperCase();
 
   if (!informal_exchange_rate_data) {
@@ -12,11 +12,11 @@ export async function GET({ params, request }) {
   }
 
   const rates_to_cup = getRatesToCUP(informal_exchange_rate_data);
-  const rates = calculateRates(rates_to_cup, base_symbol, inverted);
+  const rates = calculateRates(rates_to_cup, base_symbol, is_target);
 
   let api_response = {
     currency: base_symbol.toUpperCase(),
-    format: inverted ? "target" : "source", 
+    exchange_direction: is_target ? "target" : "source",
     date_time: new Date().toISOString(),
     rates: rates,
   };
@@ -25,7 +25,10 @@ export async function GET({ params, request }) {
 
 export function getStaticPaths() {
   let paths = [];
-  TARGET_SYMBOLS.forEach((current_symbol) => paths.push({ params: { symbol: current_symbol.toLowerCase() } }));
+  TARGET_SYMBOLS.forEach((current_symbol) => {
+    paths.push({ params: { symbol: current_symbol.toLowerCase(), direction: "source" } });
+    paths.push({ params: { symbol: current_symbol.toLowerCase(), direction: "target" } });
+  });
   return paths;
 }
 
@@ -53,7 +56,7 @@ function getRatesToCUP(data) {
   return rates;
 }
 
-function calculateRates(rates_to_cup, base_symbol, inverted = false) {
+function calculateRates(rates_to_cup, base_symbol, is_target = false) {
   let rates = {};
   TARGET_SYMBOLS.forEach((current_symbol) => {
     if (base_symbol == current_symbol) {
@@ -78,7 +81,7 @@ function calculateRates(rates_to_cup, base_symbol, inverted = false) {
       };
     }
 
-    if (inverted) {
+    if (is_target) {
       rates[current_symbol].buy = 1 / rates[current_symbol].buy;
       rates[current_symbol].sell = 1 / rates[current_symbol].sell;
       rates[current_symbol].mid = 1 / rates[current_symbol].mid;
