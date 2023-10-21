@@ -6,7 +6,7 @@ export async function GET({ params, request }) {
   const base_symbol = params.symbol.toUpperCase();
 
   if (!informal_exchange_rate_data) {
-    response = await fetch(`https://exchange-rate.decubba.com/api/v2/informal/${params.symbol}.json`);
+    response = await fetch(`https://exchange-rate.decubba.com/api/v2/informal/${params.direction}/${params.symbol}.json`);
     body = await response.text();
     return new Response(body, { status: 200, headers: { "Content-Type": "application/json" } });
   }
