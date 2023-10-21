@@ -7,8 +7,11 @@ This API just facilitates the consumption of exchange rate information, the valu
 - https://www.directoriocubano.info/cadeca/ (Same as https://www.cadeca.cu)
 - https://divisascu.app/
 
+----
 
 ## 🧞 API Endpoints
+
+----
 
 ### ➡️ v2
 
@@ -20,7 +23,9 @@ This API just facilitates the consumption of exchange rate information, the valu
   ```
 
   ```
-- ***Request Example**: GET https://exchange-rate.decubb.com/api/v2/usd.json
+- ***Request Example**: GET https://exchange-rate.decubba.com/api/v2/informal/usd.json
+
+----
 
 ### ➡️ v1 (Deprecated)
 
@@ -28,6 +33,8 @@ This API just facilitates the consumption of exchange rate information, the valu
 |:-------| :------------------------ | :----------------------------------------------- |
 |GET| [/api/formal/cup](/api/formal/cup)         | Formal CUP exchange rate of the day      |
 |GET  | [/api/informal/cup](/api/informal/cup)       | Informal CUP exchange rate of the day    |
+
+----
 
 ## 👨‍💻 Source Code 
 
