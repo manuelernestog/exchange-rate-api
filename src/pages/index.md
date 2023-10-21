@@ -10,6 +10,20 @@ This API just facilitates the consumption of exchange rate information, the valu
 
 ## 🧞 API Endpoints
 
+### ➡️ v2
+
+#### /v2/informal/[symbol].json
+- **Método:** GET
+- **Description:** Returns the daily exchange rate for the selected currency
+- **URL-Params:** [symbol] = *usd || mlc || eur || cup*
+- **Response Format**:
+  ```
+
+  ```
+- ***Request Example**: GET https://exchange-rate.decubb.com/api/v2/usd.json
+
+### ➡️ v1 (Deprecated)
+
 |Method | Slug                      | Response                                         |
 |:-------| :------------------------ | :----------------------------------------------- |
 |GET| [/api/formal/cup](/api/formal/cup)         | Formal CUP exchange rate of the day      |
