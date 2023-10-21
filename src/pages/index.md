@@ -19,7 +19,7 @@ This API just facilitates the consumption of exchange rate information, the valu
 - **Método:** GET
 - **Description:** Returns the daily exchange rate for the selected currency
 - **URL-Params:** [symbol] = *usd || mlc || eur || cup*
-- **Request Example**: GET https://exchange-rate.decubba.com/api/v2/informal/source/cup.json
+- **Request Example**: GET https://exchange-rate.decubba.com/api/v2/informal/source/usd.json
 - **Response Example**: 
 ```
 {
