@@ -55,6 +55,54 @@ This API just facilitates the consumption of exchange rate information, the valu
 }
 ```
 
+#### /v2/formal/source/[symbol].json
+- **Método:** GET
+- **Description:** Returns the daily exchange rate for the selected currency
+- **URL-Params:** [symbol] = *cad || chf || cup || eur || gbp || jpy || mxn || usd*
+- **Request Example**: GET https://exchange-rate.decubba.com/api/v2/informal/source/usd.json
+- **Response Example**: 
+```
+{
+    "currency":"USD",
+    "exchange_direction":"source",
+    "date_time":"2023-10-22T00:01:06.134Z",
+    "rates":{
+        "CAD":{"buy":1.277861193716812,"sell":1.3352722869746458,"mid":1.3075565874449424},
+        "CHF":{"buy":0.8452734589799663,"sell":0.8832495580179193,"mid":0.8649162683431553},
+        "CUP":{"buy":110.4,"sell":123.6,"mid":117},
+        "EUR":{"buy":0.8905098749801571,"sell":0.9305182896531787,"mid":0.9112038825696511},
+        "GBP":{"buy":0.7696773880495873,"sell":0.804257096788047,"mid":0.7875634442936181},
+        "JPY":{"buy":86.82589991427517,"sell":104.36985433818872,"mid":95.28618431768578},
+        "MXN":{"buy":16.859466269614018,"sell":17.616925931943932,"mid":17.251255692361454},
+        "USD":{"buy":1,"sell":1,"mid":1}
+        }
+}
+```
+
+#### /v2/formal/target/[symbol].json
+- **Método:** GET
+- **Description:** Returns the daily exchange rate for the selected currency in the opposite direction (Good to use when the value of the origin is a fraction of the others currencies)
+- **URL-Params:** [symbol] = *cad || chf || cup || eur || gbp || jpy || mxn || usd*
+- **Request Example**: GET https://exchange-rate.decubba.com/api/v2/formal/target/cup.json
+- **Response Example**: 
+```
+{
+    "currency":"CUP",
+    "exchange_direction":"target",
+    "date_time":"2023-10-22T00:01:06.118Z",
+    "rates":
+        {"CAD":{"buy":86.39436,"sell":92.56539,"mid":89.47987499999999},
+        "CHF":{"buy":130.60862,"sell":139.9378,"mid":135.27321},
+        "CUP":{"buy":1,"sell":1,"mid":1},
+        "EUR":{"buy":123.97392,"sell":132.8292,"mid":128.40156},
+        "GBP":{"buy":143.43672,"sell":153.6822,"mid":148.55946},
+        "JPY":{"buy":1.27151,"sell":1.18425,"mid":1.2278799999999999},
+        "MXN":{"buy":6.54825,"sell":7.01598,"mid":6.782115},
+        "USD":{"buy":110.39999999999999,"sell":123.59999999999998,"mid":116.99999999999999}
+        }
+}
+```
+
 ### ➡️ v1 (Deprecated)
 
 |Method | Slug                      | Response                                         |
