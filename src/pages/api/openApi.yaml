@@ -8,7 +8,7 @@ info:
     📊 Data Sources
     https://www.directoriocubano.info/cadeca/ (Same as https://www.cadeca.cu)
     https://divisascu.app/
-  version: "v3"
+  version: "v2"
   license:
     name: MIT
 servers:
