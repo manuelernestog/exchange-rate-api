@@ -21,8 +21,6 @@ pnpm run dev
 - https://divisascu.app/
 
 
-----
+## 🧞 API Doc
 
-## 🧞 API Endpoints
-
-----
+https://app.swaggerhub.com/apis-docs/decubba/exchange_rate_api/v2
