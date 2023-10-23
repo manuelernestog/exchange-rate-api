@@ -3,7 +3,6 @@ openapi: "3.0.1"
 info:
   title: 💱 Free and Open Source Cuban Exchange Rate API
   description: |-
-    💱 Free and Open Source Cuban Exchange Rate API
     This API just facilitates the consumption of exchange rate information, the values shown here come from third-party sources. Data is updated every 12 hours. We are not responsible for the stability of this API, please use it for your project at your own risk or host your own instance.
 
     📊 Data Sources
@@ -40,9 +39,10 @@ paths:
     get:
       tags:
         - v2
-      summary: Returns the daily exchange rate for the selected currency
+      summary: Returns the formal daily rates for the selected currency
       description: |
         Returns the daily exchange rate for the selected currency. 
+        
         [Symbol] = cad | chf | cup | eur | gbp | jpy | mxn | usd
       parameters:
         - name: "symbol"
@@ -60,9 +60,10 @@ paths:
           description: "Returns exchange Rate"
   /api/v2/formal/target/{symbol}.json:
     get:
-      summary: Returns the daily exchange rate for the selected currency
+      summary: Returns the inverted formal daily rates for the selected currency
       description: |
         Returns the daily exchange rate for the selected currency in the opposite direction (Good to use when the value of the origin is a fraction of the others currencies)
+        
         [Symbol] = cad | chf | cup | eur | gbp | jpy | mxn | usd
       tags:
         - v2
@@ -84,9 +85,10 @@ paths:
     get:
       tags:
         - v2
-      summary: Returns the daily exchange rate for the selected currency
+      summary: Returns the informal daily rates for the selected currency
       description: |
         Returns the daily exchange rate for the selected currency
+        
         [Symbol] = usd | mlc | eur | cup
       parameters:
         - name: "symbol"
@@ -104,9 +106,10 @@ paths:
           description: "Returns exchange Rate"
   /api/v2/informal/target/{symbol}.json:
     get:
-      summary: Returns the daily exchange rate for the selected currency
+      summary: Returns the inverted informal daily rates for the selected currency
       description: |
         Returns the daily exchange rate for the selected currency in the opposite direction (Good to use when the value of the origin is a fraction of the others currencies)
+        
         [Symbol] = usd | mlc | eur | cup
       tags:
         - v2
