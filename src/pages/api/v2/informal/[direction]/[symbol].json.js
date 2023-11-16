@@ -46,7 +46,6 @@ async function getInformalExchangeRateData() {
 function getRatesToCUP(data) {
   let rates = {};
   data.forEach((element) => {
-    console.log(element);
     if (element.source_currency_iso == "CAD") return;
     
     let rate = {

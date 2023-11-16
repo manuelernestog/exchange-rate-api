@@ -17,6 +17,8 @@ export async function GET() {
   };
 
   exchanges.forEach((element) => {
+    if (element.source_currency_iso == "CAD") return;
+
     let rate = {
       source_currency: element.source_currency_iso,
       buy: element.buy_exchange_rate.wavg,
