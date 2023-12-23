@@ -21,9 +21,9 @@ export async function GET() {
 
     let rate = {
       source_currency: element.source_currency_iso,
-      buy: element.buy_exchange_rate.wavg,
-      sell: element.sell_exchange_rate.wavg,
-      mid: element.mid_exchange_rate.wavg,
+      buy: element.buy_exchange_rate ? element.buy_exchange_rate.wavg : "-" ,
+      sell: element.sell_exchange_rate ? element.sell_exchange_rate.wavg : "-",
+      mid: element.mid_exchange_rate.wavg ? element.mid_exchange_rate.wavg : "-"
     };
     api_response.exchange_rate.push(rate);
   });

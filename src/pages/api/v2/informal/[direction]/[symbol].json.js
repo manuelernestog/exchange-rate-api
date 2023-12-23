@@ -47,11 +47,10 @@ function getRatesToCUP(data) {
   let rates = {};
   data.forEach((element) => {
     if (element.source_currency_iso == "CAD") return;
-    
     let rate = {
-      buy: element.buy_exchange_rate.wavg,
-      sell: element.sell_exchange_rate.wavg,
-      mid: element.mid_exchange_rate.wavg,
+      buy: element.buy_exchange_rate ? element.buy_exchange_rate.wavg : "-" ,
+      sell: element.sell_exchange_rate ? element.sell_exchange_rate.wavg : "-",
+      mid: element.mid_exchange_rate.wavg ? element.mid_exchange_rate.wavg : "-",
     };
     rates[element.source_currency_iso] = rate;
   });
