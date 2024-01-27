@@ -1,9 +1,14 @@
+import * as cheerio from "cheerio";
+
 const TARGET_SYMBOLS = ["USD", "MLC", "CUP", "EUR"];
 const informal_exchange_rate_data = await getInformalExchangeRateData();
+
+const data_source = "mdiv";
 
 export async function GET({ params, request }) {
   const is_target = params.direction == "target";
   const base_symbol = params.symbol.toUpperCase();
+  let rates_to_cup;
 
   if (!informal_exchange_rate_data) {
     response = await fetch(`https://exchange-rate.decubba.com/api/v2/informal/${params.direction}/${params.symbol}.json`);
@@ -11,7 +16,14 @@ export async function GET({ params, request }) {
     return new Response(body, { status: 200, headers: { "Content-Type": "application/json" } });
   }
 
-  const rates_to_cup = getRatesToCUP(informal_exchange_rate_data);
+  if (data_source == "mdiv") {
+     rates_to_cup = await getMdivCUPRates();
+  } else {
+    rates_to_cup = getRatesToCUP(informal_exchange_rate_data);
+  }
+
+  console.log(rates_to_cup);
+
   const rates = calculateRates(rates_to_cup, base_symbol, is_target);
 
   let api_response = {
@@ -43,12 +55,49 @@ async function getInformalExchangeRateData() {
   return data;
 }
 
+async function getMdivCUPRates() {
+  var arrayRates = [];
+
+  let response, body;
+  try {
+    response = await fetch("https://www.mdiv.pro/");
+    body = await response.text();
+  } catch (e) {
+    data = null;
+  }
+  const $ = cheerio.load(body);
+
+  $(".QuickStats_buy__3hWRk, .QuickStats_sell__Oz6kP").map((i, el) => {
+    var elements = $(el).find("div > div:last-child");
+    arrayRates.push(parseFloat($(elements[0]).text().split("+")[0].split(" ")[1]));
+  });
+
+  let rates = {
+    MLC: {
+      buy: arrayRates[0] ? arrayRates[0] : "-",
+      sell: arrayRates[1] ? arrayRates[1] : "-",
+      mid: arrayRates[0] && arrayRates[1] ? (arrayRates[1] + arrayRates[0]) / 2 : "-",
+    },
+    USD: {
+      buy: arrayRates[2] ? arrayRates[2] : "-",
+      sell: arrayRates[3] ? arrayRates[3] : "-",
+      mid: arrayRates[2] && arrayRates[3] ? (arrayRates[2] + arrayRates[3]) / 2 : "-",
+    },
+    EUR: {
+      buy: arrayRates[4] ? arrayRates[4] : "-",
+      sell: arrayRates[5] ? arrayRates[5] : "-",
+      mid: arrayRates[4] && arrayRates[5] ? (arrayRates[4] + arrayRates[5]) / 2 : "-",
+    },
+  };
+  return rates;
+}
+
 function getRatesToCUP(data) {
   let rates = {};
   data.forEach((element) => {
     if (element.source_currency_iso == "CAD") return;
     let rate = {
-      buy: element.buy_exchange_rate ? element.buy_exchange_rate.wavg : "-" ,
+      buy: element.buy_exchange_rate ? element.buy_exchange_rate.wavg : "-",
       sell: element.sell_exchange_rate ? element.sell_exchange_rate.wavg : "-",
       mid: element.mid_exchange_rate.wavg ? element.mid_exchange_rate.wavg : "-",
     };
