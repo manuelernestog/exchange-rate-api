@@ -22,8 +22,6 @@ export async function GET({ params, request }) {
     rates_to_cup = getRatesToCUP(informal_exchange_rate_data);
   }
 
-  console.log(rates_to_cup);
-
   const rates = calculateRates(rates_to_cup, base_symbol, is_target);
 
   let api_response = {
