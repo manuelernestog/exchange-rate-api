@@ -7,31 +7,34 @@ import Card from "../components/Card.astro";
   <main>
     <h1>💱 API de <span class="text-gradient">Tasa de cambio</span> en Cuba</h1>
     <p class="instructions">
-      ℹ️ <strong>Descargo de Responsabilidad:</strong> Esta API es gratuita y de codigo abierto y su único fin es facilitar el desarrollo de aplicaciones que
-      necesiten esta información para su funcionamiento. Todos los datos se toman de fuentes de terceros y son actualizados cada 12 horas. No nos
-      hacemos responsables de la estabilidad de este servicio, úselo bajo su propio riesgo o aloje su propia instancia.
-      La compra/venta de moneda en Cuba sin la autorización correspondiente está penada por la ley.
+      ℹ️ <strong>Descargo de Responsabilidad:</strong> Esta API es gratuita y de codigo abierto y su único fin es facilitar el
+      desarrollo de aplicaciones que necesiten esta información para su funcionamiento. Todos los datos se toman de fuentes de
+      terceros y son actualizados cada 12 horas. No nos hacemos responsables de la estabilidad de este servicio, úselo bajo su
+      propio riesgo o aloje su propia instancia. La compra/venta de moneda en Cuba sin la autorización correspondiente está penada
+      por la ley.
     </p>
     <ul role="list" class="link-card-grid">
+      <Card href="https://exchange-rate.apidog.io/" title="📔 Documentación" body="Acceda a la documentacion de la API." />
+
       <Card
-        href="https://exchange-rate.apidog.io/"
-        title="📔 Documentación"
-        body="Acceda a la documentacion de la API."
+        href="https://github.com/decubba/exchange-rate-api"
+        title="👨‍💻 Repositorio"
+        body="Acceda al codigo fuente de la API."
       />
+    </ul>
+
+    <div style="margin-bottom: 30px">
       <Card
         href="https://divisascu.app/"
         title="🔢 Fuentes de Datos"
         body="Los datos de la API se obtienen de cadeca.cu, divisascu.app o mdiv.pro"
       />
-      <Card href="https://github.com/decubba/exchange-rate-api" title="👨‍💻 Repositorio" body="Acceda al codigo fuente de la API." />
-      <Card
-        href="https://manuelernestog.github.io/support-my-work/"
-        title="❤️ Contribuir"
-        body="Si el proyecto te resulta útil puedes apoyarlo con una donación."
-      />
-    </ul>
+    </div>
+
     <div style="text-align: center;">
-      <a href="http://decubba.com/" style="text-align: center; opacity: 0.5; color: white; text-decoration: none;">© Decubba Software</a>
+      <a href="http://decubba.com/" style="text-align: center; opacity: 0.5; color: white; text-decoration: none;"
+        >© Decubba Software</a
+      >
     </div>
   </main>
 </Layout>
